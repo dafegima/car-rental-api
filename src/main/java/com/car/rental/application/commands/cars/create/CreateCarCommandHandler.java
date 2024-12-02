@@ -10,15 +10,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class CreateCarCommandHandler implements RequestHandler<CreateCarCommand, CreateCarCommandResponse> {
 
-    private final CreateCarService createCarUseCase;
+    private final CreateCarService createCarService;
 
-    public CreateCarCommandHandler(CreateCarService createCarUseCase) {
-        this.createCarUseCase = createCarUseCase;
+    public CreateCarCommandHandler(CreateCarService createCarService) {
+        this.createCarService = createCarService;
     }
 
     @Override
     public CreateCarCommandResponse handle(CreateCarCommand createCarCommand) {
-        Car carCreated = createCarUseCase.createCar(mapDTOToDomain(createCarCommand));
+        Car carCreated = createCarService.createCar(mapDTOToDomain(createCarCommand));
         return mapDomainToDTO(carCreated);
     }
 
